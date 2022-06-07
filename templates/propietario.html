@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ super() }}
+    {{ tabla["Nombre propietario"][tabla["Run propietario"] == rut] | first }} 
+{% endblock %}
+
+{% block content %}
+    <h1>Propietario/a {{ tabla["Nombre propietario"][tabla["Run propietario"] == rut] | first }}</h1>
+
+    
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ super() }}
+    Propietarios 
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <h1>Propietarios de mascotas</h1>
+    </div>
+
+    <div class="row">
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>{{ tabla.columns[0] }}</th>
+                    <th>{{ tabla.columns[1] }}</th>
+                    <th>{{ tabla.columns[2] }}</th>
+                    <th>{{ tabla.columns[3] }}</th>
+                    <th>{{ tabla.columns[4] }}</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for rut in ruts %}
+                    <tr>
+                        <td>{{ tabla["Nombre propietario"][tabla["Run propietario"] == rut].unique() | first }}</td>
+                        <td>{{ tabla["Run propietario"][tabla["Run propietario"] == rut].unique() | first }}</td>
+                        <td>{{ tabla["Direccion"][tabla["Run propietario"] == rut].unique() | first }}</td>
+                        <td>{{ tabla["Ciudad"][tabla["Run propietario"] == rut].unique() | first }}</td>
+                        <td>{{ tabla["Telefono"][tabla["Run propietario"] == rut].unique() | first }}</td>
+                        <td>
+                            
+                                <a href="{{ url_for('propietario', rut=rut) }}">
+                                    {{ render_icon('search', 25, 'info') }}
+                                </a>
+                            
+                        </td>
+                    </tr>        
+                {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+    
+{% endblock %}
